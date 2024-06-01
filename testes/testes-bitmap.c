@@ -7,7 +7,6 @@ MU_TEST(test_inicializa_bitmap) {
   for (int i = 0; i < blocos; i++) {
     mu_check(bitmap->bit[i] == 0);
   }
-  imprime_bitmap(bitmap);
   free(bitmap);
 }
 
@@ -15,7 +14,6 @@ MU_TEST(test_seta_bit) {
   Bitmap* bitmap = inicializa_bitmap();
   seta_bit(bitmap, 10);
   mu_check(verifica_bit(bitmap, 10) == 1);
-  imprime_bitmap(bitmap);
   free(bitmap);
 }
 
@@ -24,7 +22,6 @@ MU_TEST(test_limpa_bit) {
   seta_bit(bitmap, 10);
   limpa_bit(bitmap, 10);
   mu_check(verifica_bit(bitmap, 10) == 0);
-  imprime_bitmap(bitmap);
   free(bitmap);
 }
 
@@ -40,8 +37,6 @@ MU_TEST(test_salva_le_bitmap) {
 
   mu_check(memcmp(bitmap1->bit, bitmap2->bit, sizeof(uint32_t) * blocos) == 0);
 
-  imprime_bitmap(bitmap1);
-  imprime_bitmap(bitmap2);
   free(bitmap1);
   free(bitmap2);
 }

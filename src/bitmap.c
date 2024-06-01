@@ -64,24 +64,14 @@ Bitmap* le_bitmap_do_arquivo(Bitmap* bitmap, const char* arquivo_bitmap) {
   return bitmap;
 }
 
-void imprime_bitmap(Bitmap* bitmap) {
-  printf("\nBitmap: ");
-  for (int i = 0; i < MAX_BLOCOS_INT32; i++) {
-    for (int j = 0; j < 32; j++) {
-      printf("%d", (bitmap->bit[i] >> j) & 1);
-    }
-  }
-  printf("\n");
-}
-
 
 
 
 // Funções de verificação de espaço livre
 
-int verifica_espaco_para_arquivo(Bitmap* bitmap, int tamanho) {
+int possui_espaco_para_arquivo(Bitmap* bitmap, int tamanho_arquivo) {
   // tamanho é o tamanho do arquivo em bytes
-  int blocos_necessarios = ceil((float) tamanho / TAM_BLOCO);
+  int blocos_necessarios = converte_bytes_para_blocos(tamanho_arquivo);
   int blocos_livres = 0;
   for (int i = 0; i < MAX_BLOCOS; i++) {
     if (!verifica_bit(bitmap, i)) {

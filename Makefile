@@ -4,7 +4,7 @@ CFLAGS := -Wall -Wextra
 DEBUGFLAGS := -g
 
 # Define source files and target executable
-SRCS := src/ep3.c scr/comandos.c src/prompt.c
+SRCS := src/ep3.c scr/comandos.c src/prompt.c src/utils.c
 TARGET := ep3
 
 # Default target
