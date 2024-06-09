@@ -1,12 +1,13 @@
 #include "minunit.h"
-#include "src/ep3.h"
+#include "../src/ep3.h"
 
 MU_TEST(test_inicializa_bitmap) {
   Bitmap* bitmap = inicializa_bitmap();
-  int blocos = -(-MAX_BLOCOS / 32); // ceil(MAX_BLOCOS / 32)
+  int blocos = ceil((float) MAX_BLOCOS / 8);
   for (int i = 0; i < blocos; i++) {
     mu_check(bitmap->bit[i] == 0);
   }
+  imprime_bitmap(bitmap);
   free(bitmap);
 }
 
@@ -33,9 +34,9 @@ MU_TEST(test_salva_le_bitmap) {
   Bitmap* bitmap2 = inicializa_bitmap();
   le_bitmap_do_arquivo(bitmap2, "./testes/test_bitmap.bin");
 
-  int blocos = -(-MAX_BLOCOS / 32); // ceil(MAX_BLOCOS / 32)
+  int blocos = ceil((float) MAX_BLOCOS / 8);
 
-  mu_check(memcmp(bitmap1->bit, bitmap2->bit, sizeof(uint32_t) * blocos) == 0);
+  mu_check(memcmp(bitmap1->bit, bitmap2->bit, sizeof(uint8_t) * blocos) == 0);
 
   free(bitmap1);
   free(bitmap2);

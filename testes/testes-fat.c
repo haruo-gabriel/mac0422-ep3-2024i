@@ -1,5 +1,5 @@
 #include "minunit.h"
-#include "src/ep3.h"
+#include "../src/ep3.h"
 
 MU_TEST(test_inicializa_fat) {
   printf("\n\n\nOn test_inicializa_fat\n");
@@ -31,7 +31,7 @@ MU_TEST(test_aloca_arquivo) {
   // imprime_fat_bitmap(fat, bitmap);
 
   // Alocate a second file that is too big
-  result = aloca_arquivo(fat, bitmap, TAM_BLOCO * 30);  // 30 blocks
+  result = aloca_arquivo(fat, bitmap, TAM_DISCO);  // 30 blocks
   mu_assert(result == -1, "Error: File allocation succeeded when it should have failed.");
 
   // Allocate a second file that fits

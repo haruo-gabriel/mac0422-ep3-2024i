@@ -19,18 +19,63 @@ void parse_comando(const char* comando, char* args[], int* num_args) {
 }
 
 int valida_comando(char* args[], int num_args) {
-  if (strcmp(args[0], "monta") == 0 && num_args == 2) {
-    return 0;
+  // Se o sistema de arquivos não estiver montado, apenas monta e sai são comandos válidos
+  if (!g_montado) {
+    if (strcmp(args[0], "monta") == 0 && num_args == 2) {
+      return 0;
+    }
+    if (strcmp(args[0], "sai") == 0 && num_args == 1) {
+      return -1;
+    }
   }
-  if (strcmp(args[0], "sai") == 0 && num_args == 1) {
-    return -1;
+  // Os comandos a seguir precisam que o sistema de arquivos esteja montado
+  else {
+    if (strcmp(args[0], "copia") == 0 && num_args == 3) {
+      return 0;
+    }
+    if (strcmp(args[0], "criadir") == 0 && num_args == 2) {
+      return 0;
+    }
+    if (strcmp(args[0], "apagadir") == 0 && num_args == 2) {
+      return 0;
+    }
+    if (strcmp(args[0], "mostra") == 0 && num_args == 2) {
+      return 0;
+    }
+    if (strcmp(args[0], "toca") == 0 && num_args == 2) {
+      return 0;
+    }
+    if (strcmp(args[0], "apaga") == 0 && num_args == 2) {
+      return 0;
+    }
+    if (strcmp(args[0], "lista") == 0 && num_args == 2) {
+      return 0;
+    }
+    if (strcmp(args[0], "atualizadb") == 0 && num_args == 2) {
+      return 0;
+    }
+    if (strcmp(args[0], "busca") == 0 && num_args == 2) {
+      return 0;
+    }
+    if (strcmp(args[0], "status") == 0 && num_args == 1) {
+      return 0;
+    }
+    if (strcmp(args[0], "desmonta") == 0 && num_args == 1) {
+      return 0;
+    }
+    if (strcmp(args[0], "sai") == 0 && num_args == 1) {
+      return -1;
+    }
   }
   return 1;
 }
 
 void executa_comando(char* args[]) {
   if (strcmp(args[0], "monta") == 0) {
-    monta(*args[1]);
+    monta(args[1]);
+  }
+  if (strcmp(args[0], "desmonta") == 0) {
+    desmonta();
   }
   if (strcmp(args[0], "sai") == 0) {
     sai();
